@@ -261,10 +261,11 @@ def convert(data,picked,picked1):
                     temp = match.group(0).split('"')[1].split(";")
                     final = ""
                     for style in range(len(temp)):
-                        temp2 = temp[style].lower().split(":")
-                        if "-" in temp2[0]:
-                            temp2[0] = temp2[0][:temp2[0].index(
-                                "-")]+temp2[0][temp2[0].index("-")+1].upper()+temp2[0][temp2[0].index("-")+2:]
+                        if ":" in temp[style]:
+                            temp2 = temp[style].lower().split(":")
+                            if "-" in temp2[0]:
+                                temp2[0] = temp2[0][:temp2[0].index(
+                                    "-")]+temp2[0][temp2[0].index("-")+1].upper()+temp2[0][temp2[0].index("-")+2:]
                         final += temp2[0]+":\""+temp2[1]+"\","
                     data[x] = data[x][:match.start()]+'style={{'+final[:-1]+"}}"+data[x][match.end():]
                 data[x] = re.sub(r'cellpadding', r'cellPadding', data[x], flags=re.I)
